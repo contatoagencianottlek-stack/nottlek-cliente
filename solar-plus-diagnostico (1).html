@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Diagnóstico N.O.T.T.L.E.K · Solar Plus</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#05090F;
+  --card:#0C1520;
+  --bord:#162030;
+  --gold:#D4A017;
+  --goldlt:#FDE68A;
+  --text:#E8F0FA;
+  --muted:#4A6480;
+  --N:#22C55E;
+  --O:#3B82F6;
+  --T1:#F59E0B;
+  --T2:#EF4444;
+  --L:#A855F7;
+  --E:#06B6D4;
+  --K:#94A3B8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0;}
+
+/* SECTIONS */
+section{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 24px;}
+.inner{max-width:720px;margin:0 auto;width:100%;}
+
+/* FADE IN */
+.fade{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.fade.in{opacity:1;transform:translateY(0);}
+
+/* ── HERO ── */
+#hero{background:linear-gradient(160deg,#05090F 60%,#0D1A10 100%);border-bottom:1px solid var(--bord);}
+.hero-eyebrow{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(38px,8vw,72px);font-weight:800;line-height:1.0;color:#FFF;margin-bottom:8px;}
+.hero-name span{color:var(--gold);}
+.hero-sub{font-size:17px;color:var(--muted);margin-bottom:36px;font-weight:300;line-height:1.6;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#0A1A0E;border:1px solid #22C55E40;border-radius:30px;padding:8px 18px;font-size:12px;color:#6EE7B7;}
+.hero-badge span{width:7px;height:7px;background:#22C55E;border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:40px;}
+.hero-stat{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:16px;}
+.hero-stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--gold);}
+.hero-stat-label{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4;}
+
+/* ── DOR ── */
+#dor{background:linear-gradient(160deg,#0D0A05 0%,#05090F 100%);}
+.sec-eyebrow{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(26px,5vw,42px);font-weight:800;color:#FFF;line-height:1.1;margin-bottom:20px;}
+.sec-title span{color:var(--gold);}
+.sec-lead{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:32px;}
+
+.dor-card{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:22px;margin-bottom:12px;position:relative;overflow:hidden;}
+.dor-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--T2);}
+.dor-icon{font-size:22px;margin-bottom:10px;}
+.dor-titulo{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#FFF;margin-bottom:6px;}
+.dor-desc{font-size:14px;color:var(--muted);line-height:1.6;}
+.dor-insight{background:#1A0808;border:1px solid #EF444430;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:13px;color:#FCA5A5;line-height:1.5;}
+
+/* ── MÉTODO ── */
+#metodo{background:var(--bg);}
+.pilares{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+.pilar{border-radius:12px;overflow:hidden;border:1px solid var(--bord);cursor:pointer;transition:border-color .2s;}
+.pilar:hover{border-color:var(--gold)40;}
+.pilar-head{padding:16px 20px;display:flex;align-items:center;gap:14px;}
+.pilar-letra{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pilar-info{flex:1;}
+.pilar-nome{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#FFF;}
+.pilar-tagline{font-size:12px;color:var(--muted);margin-top:2px;}
+.pilar-body{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;}
+.pilar.open .pilar-body{max-height:300px;padding:0 20px 18px;}
+.pilar-detalhe{font-size:14px;color:var(--muted);line-height:1.7;border-top:1px solid var(--bord);padding-top:14px;}
+.pilar-acao{display:inline-block;margin-top:10px;font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;}
+
+/* ── DIAGNÓSTICO ── */
+#diagnostico{background:linear-gradient(160deg,#050D1A 0%,#05090F 100%);}
+.diag-box{background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:28px;margin-bottom:14px;}
+.diag-label{font-size:10px;color:var(--gold);font-family:'Syne',sans-serif;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.diag-text{font-size:15px;color:var(--text);line-height:1.75;}
+.diag-text b{color:#FFF;font-weight:600;}
+
+.gargalo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+.gargalo-item{background:#091525;border-radius:10px;padding:14px;border:1px solid var(--bord);}
+.gargalo-num{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:4px;}
+.gargalo-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* ── PLANO ── */
+#plano{background:var(--bg);}
+.linha-tempo{position:relative;padding-left:28px;}
+.linha-tempo::before{content:'';position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--gold),var(--N));}
+.passo{position:relative;margin-bottom:22px;}
+.passo-dot{position:absolute;left:-28px;top:4px;width:18px;height:18px;border-radius:50%;border:2px solid var(--gold);background:var(--bg);display:flex;align-items:center;justify-content:center;}
+.passo-dot-inner{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+.passo-titulo{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#FFF;margin-bottom:4px;}
+.passo-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.passo-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;padding:2px 8px;border-radius:4px;margin-bottom:6px;font-family:'Syne',sans-serif;}
+
+/* ── GARANTIA ── */
+#garantia{background:linear-gradient(160deg,#0A1A0E 0%,#05090F 100%);}
+.garantia-box{background:#0A1A0E;border:2px solid var(--N);border-radius:16px;padding:28px;text-align:center;}
+.garantia-icon{font-size:40px;margin-bottom:16px;}
+.garantia-titulo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#FFF;margin-bottom:10px;}
+.garantia-texto{font-size:15px;color:#86EFAC;line-height:1.7;max-width:480px;margin:0 auto;}
+
+/* ── CTA ── */
+#cta{background:var(--bg);text-align:center;}
+.cta-titulo{font-family:'Syne',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:800;color:#FFF;line-height:1.1;margin-bottom:16px;}
+.cta-titulo span{color:var(--gold);}
+.cta-sub{font-size:16px;color:var(--muted);margin-bottom:36px;line-height:1.6;}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#07111F;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;padding:16px 32px;border-radius:50px;text-decoration:none;letter-spacing:.5px;transition:transform .2s,box-shadow .2s;}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px #D4A01740;}
+.cta-info{margin-top:14px;font-size:12px;color:var(--muted);}
+
+/* ── NAV DOTS ── */
+.nav-dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:100;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--bord);border:1px solid var(--muted);cursor:pointer;transition:all .2s;}
+.dot.active{background:var(--gold);border-color:var(--gold);transform:scale(1.4);}
+
+/* ── HEADER ── */
+header{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(5,9,15,0.95),transparent);backdrop-filter:blur(8px);}
+.header-logo{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:700;}
+.header-cliente{font-size:12px;color:var(--muted);}
+
+@media(max-width:600px){
+  .hero-grid{grid-template-columns:1fr 1fr;}
+  .gargalo-grid{grid-template-columns:1fr;}
+  .nav-dots{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-logo">N.O.T.T.L.E.K™</div>
+  <div class="header-cliente">Solar Plus · Cruzeiro SP</div>
+</header>
+
+<nav class="nav-dots">
+  <div class="dot active" onclick="scrollTo('#hero')" title="Início"></div>
+  <div class="dot" onclick="scrollTo('#dor')" title="O Problema"></div>
+  <div class="dot" onclick="scrollTo('#metodo')" title="O Método"></div>
+  <div class="dot" onclick="scrollTo('#diagnostico')" title="Diagnóstico"></div>
+  <div class="dot" onclick="scrollTo('#plano')" title="O Plano"></div>
+  <div class="dot" onclick="scrollTo('#garantia')" title="Garantia"></div>
+  <div class="dot" onclick="scrollTo('#cta')" title="Próximo Passo"></div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="inner">
+    <div class="fade">
+      <div class="hero-eyebrow">Diagnóstico N.O.T.T.L.E.K™ · Exclusivo</div>
+      <h1 class="hero-name">Vinicius,<br/>a <span>Solar Plus</span><br/>pode crescer<br/>sem você.</h1>
+      <p class="hero-sub">Mapeamos a operação comercial de vocês.<br/>Em 30 minutos você sai com o diagnóstico completo — e o próximo passo.</p>
+      <div class="hero-badge">
+        <span></span>
+        Preparado exclusivamente para a Solar Plus · Cruzeiro SP
+      </div>
+    </div>
+    <div class="hero-grid fade" style="transition-delay:.2s">
+      <div class="hero-stat">
+        <div class="hero-stat-num">7</div>
+        <div class="hero-stat-label">pilares comerciais analisados</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1</div>
+        <div class="hero-stat-label">gargalo principal identificado</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">30'</div>
+        <div class="hero-stat-label">para sair com o mapa na mão</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DOR ══ -->
+<section id="dor">
+  <div class="inner">
+    <div class="fade">
+      <div class="sec-eyebrow">O problema real</div>
+      <h2 class="sec-title">Você não tem<br/>problema de <span>tempo.</span></h2>
+      <p class="sec-lead">Você tem problema de estrutura. O tempo que falta é o sintoma — não a causa.</p>
+    </div>
+
+    <div class="dor-card fade" style="transition-delay:.1s">
+      <div class="dor-icon">🔄</div>
+      <div class="dor-titulo">O dono no centro de tudo</div>
+      <div class="dor-desc">Quando o comercial depende de você para funcionar, cada hora do seu dia é consumida por atendimento, proposta e follow-up que poderiam estar rodando sozinhos.</div>
+      <div class="dor-insight">Resultado: você trabalha muito, cresce pouco — e qualquer saída sua trava a operação.</div>
+    </div>
+
+    <div class="dor-card fade" style="transition-delay:.2s">
+      <div class="dor-icon">📉</div>
+      <div class="dor-titulo">A armadilha da indicação</div>
+      <div class="dor-desc">Integradora que depende de indicação tem mês bom e mês ruim sem conseguir prever. Sem processo, não tem como escalar — porque não tem como repetir.</div>
+      <div class="dor-insight">70% das vendas solares fecham depois do 5º contato. 90% dos vendedores desistem no 2º. Você perde pra falta de processo — não pra concorrência.</div>
+    </div>
+
+    <div class="dor-card fade" style="transition-delay:.3s">
+      <div class="dor-icon">🏃</div>
+      <div class="dor-titulo">Marketing sem estrutura = dinheiro no lixo</div>
+      <div class="dor-desc">Contratar agência de marketing sem processo comercial estruturado é trazer mais lead para um funil furado. O lead chega — e some porque ninguém seguiu.</div>
+      <div class="dor-insight">Antes de investir em tráfego: o processo de resposta, qualificação e follow-up precisa estar funcionando.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MÉTODO ══ -->
+<section id="metodo">
+  <div class="inner">
+    <div class="fade">
+      <div class="sec-eyebrow">A solução</div>
+      <h2 class="sec-title">O Método<br/><span>N.O.T.T.L.E.K™</span></h2>
+      <p class="sec-lead">7 pilares que transformam uma integradora dependente do dono em uma operação comercial previsível e escalável.</p>
+    </div>
+
+    <div class="pilares fade" style="transition-delay:.15s">
+
+      <div class="pilar" onclick="togglePilar(this)">
+        <div class="pilar-head" style="background:#0A1F10;">
+          <div class="pilar-letra" style="background:#22C55E20;color:#22C55E;">N</div>
+          <div class="pilar-info">
+            <div class="pilar-nome">N — Núcleo Comercial</div>
+            <div class="pilar-tagline">Meta → Número → Processo</div>
+          </div>
+          <div style="font-size:18px;color:#22C55E;transition:transform .3s;" class="arrow">▸</div>
+        </div>
+        <div class="pilar-body">
+          <div class="pilar-detalhe">Define a meta em número real e cria o processo para atingi-la. Para de depender de sorte e começa a operar com previsibilidade. <b>Para a Solar Plus:</b> quanto precisa faturar, qual o ticket médio, quantos leads por mês são necessários.</div>
+          <span class="pilar-acao" style="background:#22C55E20;color:#22C55E;">→ Estruturamos na semana 1</span>
+        </div>
+      </div>
+
+      <div class="pilar" onclick="togglePilar(this)">
+        <div class="pilar-head" style="background:#080F1F;">
+          <div class="pilar-letra" style="background:#3B82F620;color:#3B82F6;">O</div>
+          <div class="pilar-info">
+            <div class="pilar-nome">O — Otimização de Funil</div>
+            <div class="pilar-tagline">Lead → Proposta → Fechamento</div>
+          </div>
+          <div style="font-size:18px;color:#3B82F6;transition:transform .3s;" class="arrow">▸</div>
+        </div>
+        <div class="pilar-body">
+          <div class="pilar-detalhe">Estrutura o que acontece depois que o lead chega. Protocolo de resposta, CRM, cadência de follow-up. <b>Para a Solar Plus:</b> processo documentado para que qualquer vendedor execute — sem precisar de você.</div>
+          <span class="pilar-acao" style="background:#3B82F620;color:#3B82F6;">→ Libera seu tempo na semana 2</span>
+        </div>
+      </div>
+
+      <div class="pilar" onclick="togglePilar(this)">
+        <div class="pilar-head" style="background:#1A1200;">
+          <div class="pilar-letra" style="background:#F59E0B20;color:#F59E0B;">T</div>
+          <div class="pilar-info">
+            <div class="pilar-nome">T — Tráfego Estratégico</div>
+            <div class="pilar-tagline">Lead certo · Mensagem certa</div>
+          </div>
+          <div style="font-size:18px;color:#F59E0B;transition:transform .3s;" class="arrow">▸</div>
+        </div>
+        <div class="pilar-body">
+          <div class="pilar-detalhe">Tráfego só entra depois que o funil está funcionando. <b>Para a Solar Plus:</b> antes de contratar agência, garante que cada lead que entrar vai ser atendido, qualificado e acompanhado.</div>
+          <span class="pilar-acao" style="background:#F59E0B20;color:#F59E0B;">→ Semana 4 — só depois da base</span>
+        </div>
+      </div>
+
+      <div class="pilar" onclick="togglePilar(this)">
+        <div class="pilar-head" style="background:#1A0808;">
+          <div class="pilar-letra" style="background:#EF444420;color:#EF4444;">T</div>
+          <div class="pilar-info">
+            <div class="pilar-nome">T — Técnica de Fechamento</div>
+            <div class="pilar-tagline">Proposta que fecha</div>
+          </div>
+          <div style="font-size:18px;color:#EF4444;transition:transform .3s;" class="arrow">▸</div>
+        </div>
+        <div class="pilar-body">
+          <div class="pilar-detalhe">Script consultivo, mapeamento de objeções e cadência de follow-up. <b>Para a Solar Plus:</b> vendedor para de improvisar e passa a ter um roteiro que converte.</div>
+          <span class="pilar-acao" style="background:#EF444420;color:#EF4444;">→ Semana 3</span>
+        </div>
+      </div>
+
+      <div class="pilar" onclick="togglePilar(this)">
+        <div class="pilar-head" style="background:#0F0A1F;">
+          <div class="pilar-letra" style="background:#A855F720;color:#A855F7;">L</div>
+          <div class="pilar-info">
+            <div class="pilar-nome">L — Liderança</div>
+            <div class="pilar-tagline">Empresa que funciona sem você</div>
+          </div>
+          <div style="font-size:18px;color:#A855F7;transition:transform .3s;" class="arrow">▸</div>
+        </div>
+        <div class="pilar-body">
+          <div class="pilar-detalhe">Mapeia equipe, responsabilidades e processos. <b>Para a Solar Plus:</b> o gargalo principal hoje é que você é o processo. Isso muda aqui.</div>
+          <span class="pilar-acao" style="background:#A855F720;color:#A855F7;">→ Semana 2 — libera o dono</span>
+        </div>
+      </div>
+
+      <div class="pilar" onclick="togglePilar(this)">
+        <div class="pilar-head" style="background:#031A1F;">
+          <div class="pilar-letra" style="background:#06B6D420;color:#06B6D4;">E</div>
+          <div class="pilar-info">
+            <div class="pilar-nome">E — Escala</div>
+            <div class="pilar-tagline">Crescimento planejado</div>
+          </div>
+          <div style="font-size:18px;color:#06B6D4;transition:transform .3s;" class="arrow">▸</div>
+        </div>
+        <div class="pilar-body">
+          <div class="pilar-detalhe">Upsell, parcerias, expansão. Só depois que N, O, T, T e L estão rodando. <b>Para a Solar Plus:</b> O&M, projetos maiores, indicações estruturadas.</div>
+          <span class="pilar-acao" style="background:#06B6D420;color:#06B6D4;">→ Mês 2 em diante</span>
+        </div>
+      </div>
+
+      <div class="pilar" onclick="togglePilar(this)">
+        <div class="pilar-head" style="background:#0A0F14;">
+          <div class="pilar-letra" style="background:#94A3B820;color:#94A3B8;">K</div>
+          <div class="pilar-info">
+            <div class="pilar-nome">K — KPI & Controle</div>
+            <div class="pilar-tagline">Números que guiam decisão</div>
+          </div>
+          <div style="font-size:18px;color:#94A3B8;transition:transform .3s;" class="arrow">▸</div>
+        </div>
+        <div class="pilar-body">
+          <div class="pilar-detalhe">Dashboard com leads, propostas, fechamentos, ticket médio e CAC semanais. <b>Para a Solar Plus:</b> você para de gerir no feeling e começa a gerir por dado.</div>
+          <span class="pilar-acao" style="background:#94A3B820;color:#94A3B8;">→ Semana 3</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DIAGNÓSTICO ══ -->
+<section id="diagnostico">
+  <div class="inner">
+    <div class="fade">
+      <div class="sec-eyebrow">Diagnóstico Solar Plus</div>
+      <h2 class="sec-title">O que<br/>encontramos<br/>na sua <span>operação.</span></h2>
+    </div>
+
+    <div class="diag-box fade" style="transition-delay:.1s">
+      <div class="diag-label">Gargalo principal identificado</div>
+      <div class="diag-text">
+        <b>Você é o processo comercial da Solar Plus.</b><br/><br/>
+        A sensação de falta de tempo não é problema de agenda — é o sinal de que a operação ainda depende do dono para funcionar. Cada lead que chega, cada proposta, cada follow-up passa por você.<br/><br/>
+        Enquanto isso não muda, o negócio tem um teto claro: <b>o limite da sua energia.</b>
+      </div>
+    </div>
+
+    <div class="diag-box fade" style="transition-delay:.2s">
+      <div class="diag-label">O que está acontecendo agora</div>
+      <div class="gargalo-grid">
+        <div class="gargalo-item">
+          <div class="gargalo-num" style="color:#EF4444;">⚠</div>
+          <div class="gargalo-desc">Sem processo documentado de atendimento ao lead</div>
+        </div>
+        <div class="gargalo-item">
+          <div class="gargalo-num" style="color:#EF4444;">⚠</div>
+          <div class="gargalo-desc">Follow-up depende da memória — não de cadência estruturada</div>
+        </div>
+        <div class="gargalo-item">
+          <div class="gargalo-num" style="color:#F59E0B;">◎</div>
+          <div class="gargalo-desc">Captação concentrada em indicação sem processo de reativação</div>
+        </div>
+        <div class="gargalo-item">
+          <div class="gargalo-num" style="color:#F59E0B;">◎</div>
+          <div class="gargalo-desc">Pronto para tráfego — mas o funil precisa estar estruturado primeiro</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-box fade" style="transition-delay:.3s" style="border-color:#22C55E40;">
+      <div class="diag-label" style="color:#22C55E;">O que está a favor</div>
+      <div class="diag-text">
+        A Solar Plus tem o <b>ativo mais importante</b>: um dono que quer crescer com estrutura, não no improviso.<br/><br/>
+        A decisão de estruturar o comercial <b>antes</b> de contratar agência de marketing é exatamente a ordem certa. Quem faz ao contrário desperdiça budget em funil furado.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PLANO ══ -->
+<section id="plano">
+  <div class="inner">
+    <div class="fade">
+      <div class="sec-eyebrow">O que acontece agora</div>
+      <h2 class="sec-title">30 dias para<br/>a Solar Plus<br/>funcionar sem <span>você.</span></h2>
+      <p class="sec-lead">Uma operação onde você escolhe quando entrar — não onde você é obrigado a estar.</p>
+    </div>
+
+    <div class="linha-tempo fade" style="transition-delay:.15s">
+
+      <div class="passo">
+        <div class="passo-dot"><div class="passo-dot-inner"></div></div>
+        <span class="passo-tag" style="background:#22C55E20;color:#22C55E;">SEMANA 1 · Dias 1–7</span>
+        <div class="passo-titulo">Diagnóstico completo + meta definida</div>
+        <div class="passo-desc">Mapeamento real da operação. Quanto precisa faturar, qual o ticket, quantos leads por mês. Você sai da semana 1 sabendo o número exato que precisa atingir e o que está travando.</div>
+      </div>
+
+      <div class="passo">
+        <div class="passo-dot"><div class="passo-dot-inner"></div></div>
+        <span class="passo-tag" style="background:#3B82F620;color:#3B82F6;">SEMANA 2 · Dias 8–14</span>
+        <div class="passo-titulo">Funil + CRM + processo que roda sem você</div>
+        <div class="passo-desc">Estrutura o que acontece desde o lead entrar até o fechamento. Protocolo de resposta, CRM configurado, responsabilidades definidas. O comercial começa a funcionar independente de você.</div>
+      </div>
+
+      <div class="passo">
+        <div class="passo-dot"><div class="passo-dot-inner"></div></div>
+        <span class="passo-tag" style="background:#EF444420;color:#EF4444;">SEMANA 3 · Dias 15–21</span>
+        <div class="passo-titulo">Script + objeções + KPIs ativos</div>
+        <div class="passo-desc">Vendedor com roteiro que converte. As 5 principais objeções mapeadas com resposta. Dashboard de indicadores funcionando — você começa a gerir por número, não por sensação.</div>
+      </div>
+
+      <div class="passo">
+        <div class="passo-dot"><div class="passo-dot-inner"></div></div>
+        <span class="passo-tag" style="background:#F59E0B20;color:#F59E0B;">SEMANA 4 · Dias 22–30</span>
+        <div class="passo-titulo">Revisão + plano de tráfego pronto para ativar</div>
+        <div class="passo-desc">Com o funil funcionando, planejamos a primeira campanha de tráfego. Agora sim, cada lead que entrar vai ser atendido, qualificado e acompanhado — sem depender de você.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GARANTIA ══ -->
+<section id="garantia">
+  <div class="inner">
+    <div class="garantia-box fade">
+      <div class="garantia-icon">🛡️</div>
+      <div class="garantia-titulo">Diagnóstico N.O.T.T.L.E.K™<br/>100% gratuito</div>
+      <div class="garantia-texto">
+        Você não precisa contratar nada hoje.<br/><br/>
+        <b>Em 30 minutos você sai com o Mapa de Gargalo Comercial da Solar Plus</b> — onde está vazando receita, o que travar primeiro e o caminho para uma operação que cresce sem depender de você.<br/><br/>
+        Se fizer sentido continuar, conversamos. Se não fizer, você sai com o diagnóstico na mão de graça.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section id="cta">
+  <div class="inner" style="text-align:center;">
+    <div class="fade">
+      <div class="sec-eyebrow" style="text-align:center;">Próximo passo</div>
+      <h2 class="cta-titulo">Vinicius,<br/>seu <span>Mapa de Gargalo</span><br/>está pronto.</h2>
+      <p class="cta-sub">30 minutos. Sem compromisso.<br/>Você sai com clareza — independente do que vier depois.</p>
+      <a href="https://wa.me/5535997339177?text=Ol%C3%A1%20Keltton%2C%20quero%20confirmar%20nossa%20reuni%C3%A3o" class="cta-btn">
+        ✅ Confirmar reunião pelo WhatsApp
+      </a>
+      <div class="cta-info">Keltton Belizario · Método N.O.T.T.L.E.K™ · Engenharia de Vendas para Integradoras Solares</div>
+    </div>
+  </div>
+</section>
+
+<script>
+// FADE IN ON SCROLL
+const fades=document.querySelectorAll('.fade');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:0.12});
+fades.forEach(f=>obs.observe(f));
+
+// NAV DOTS
+const sections=document.querySelectorAll('section');
+const dots=document.querySelectorAll('.dot');
+const sectionObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const idx=[...sections].indexOf(e.target);
+      dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    }
+  });
+},{threshold:0.4});
+sections.forEach(s=>sectionObs.observe(s));
+
+function scrollTo(id){document.querySelector(id).scrollIntoView({behavior:'smooth'});}
+
+// PILAR TOGGLE
+function togglePilar(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.pilar').forEach(p=>{
+    p.classList.remove('open');
+    p.querySelector('.arrow').style.transform='rotate(0deg)';
+  });
+  if(!isOpen){
+    el.classList.add('open');
+    el.querySelector('.arrow').style.transform='rotate(90deg)';
+  }
+}
+
+// AUTO OPEN FIRST PILAR
+document.querySelector('.pilar').click();
+</script>
+</body>
+</html>
